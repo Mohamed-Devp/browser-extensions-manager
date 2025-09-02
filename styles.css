@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /* Colors */
+    --neutral-0: hsl(200, 60%, 99%);
+    --neutral-100: hsl(0, 0%, 93%);
+    --neutral-200: hsl(217, 61%, 90%);
+    --neutral-300: hsl(0, 0%, 78%);
+    --neutral-600: hsl(226, 11%, 37%);
+    --neutral-700: hsl(225, 23%, 24%);
+    --neutral-800: hsl(226, 25%, 17%);
+    --neutral-900: hsl(227, 75%, 14%);
+
+    --red-400: hsl(3, 86%, 64%);
+    --red-500: hsl(3, 71%, 56%);
+    --red-700: hsl(3, 77%, 44%);
+
+    /* Gradients */
+    --light-gradient: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+    --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+
+    /* Layout */
+    --bg-body: var(--light-gradient);
+    --bg-header: var(--neutral-0);
+    --border-header: var(--neutral-200);
+
+    /* Components */
+    --bg-card: var(--neutral-0);
+    --bg-toggle: var(--neutral-100);
+    --bg-filter: var(--neutral-0);
+    --bg-switch: var(--neutral-300);
+    --bg-filter-active: var(--red-700);
+    --bg-switch-active: var(--red-700);
+
+    --border-card: var(--neutral-200);
+    --border-filter: var(--neutral-200);
+    --border-remove: var(--neutral-300);
+
+    --clr-primary: var(--neutral-900);
+    --clr-secondary: var(--neutral-0);
+    --clr-description: var(--neutral-600);
+
+    /* Hover Effects */
+    --bg-hover-toggle: var(--neutral-300);
+    --bg-hover-remove: var(--red-700);
+    --bg-hover-switch: var(--red-400);
+    --bg-hover-filter: var(--neutral-0);
+    --bg-hover-filter-active: var(--red-400);
+    --opacity-hover-filter: 0.7;
+
+    /* Fonts */
+    --primary-font: "Noto Sans";
+
+    /* Font weights */
+    --regular: 400;
+    --medium: 500;
+    --bold: 700;
+}
+
+* {
+    margin: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    min-height: 100vh;
+    padding: 2rem 0;
+    background-image: var(--bg-body);
+}
+
+:root:has(#theme-toggle:checked) {
+    --first-scale: 1;
+    --last-scale: 0;
+
+    /* Layout */
+    --bg-body: var(--dark-gradient);
+    --bg-header: var(--neutral-800);
+    --border-header: transparent;
+
+    /* Components */
+    --bg-card: var(--neutral-800);
+    --bg-toggle: var(--neutral-700);
+    --bg-filter: var(--neutral-700);
+    --bg-switch: var(--neutral-600);
+    --bg-filter-active: var(--red-400);
+    --bg-switch-active: var(--red-400);
+
+    --border-card: var(--neutral-600);
+    --border-filter: var(--neutral-600);
+    --border-remove: var(--neutral-600);
+
+    --clr-primary: var(--neutral-0);
+    --clr-secondary: var(--neutral-900);
+    --clr-description: var(--neutral-300);
+
+    /* Hover Effects */
+    --bg-hover-toggle: var(--neutral-600);
+    --bg-hover-remove: var(--red-400);
+    --bg-hover-switch: var(--red-700);
+    --bg-hover-filter: var(--neutral-600);
+    --bg-hover-filter-active: var(--red-700);
+    --opacity-hover-filter: 1;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: min(80vw, 1750px);
+    padding: 12px 14px;
+    border-radius: 18px;
+    border: 1px solid var(--border-header);
+    background-color: var(--bg-header);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+header > svg {
+    color: var(--clr-primary);
+}
+
+.theme-toggle {
+    border-radius: 10px;
+    background-color: var(--bg-toggle);
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-hover-toggle);
+}
+
+.theme-toggle label {
+    display: grid;
+    grid-template-columns: "stack";
+    padding: 12px;
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+.theme-toggle img {
+    grid-area: stack;
+    width: 18px;
+    object-fit: contain;
+    transition: scale .3s ease-in-out;
+}
+
+.theme-toggle img:first-of-type {
+    scale: var(--first-scale, 0);
+}
+
+.theme-toggle img:last-of-type {
+    scale: var(--last-scale, 1);
+}
+
+.theme-toggle input {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Extensions List Section */
+.extensions-list {
+    width: min(80vw, 1750px);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-header h1 {
+    color: var(--clr-primary);
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter {
+    padding: 8px 1rem;
+    border: 1px solid var(--border-filter);
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: var(--regular);
+    cursor: pointer;
+    color: var(--clr-primary);
+    background-color: var(--bg-filter);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.filter:not(.active):hover {
+    opacity: var(--opacity-hover-filter);
+    background-color: var(--bg-hover-filter);
+    box-shadow: 0 2px 8px transparent;
+}
+
+.filter.active {
+    border-color: transparent;
+    color: var(--clr-secondary);
+    background-color: var(--bg-filter-active);
+    box-shadow: none;
+}
+
+.filter.active:hover {
+    background-color: var(--bg-hover-filter-active);
+}
+
+.extensions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 210px;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.extension {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    border: 1px solid var(--border-card);
+    border-radius: 18px;
+    background-color: var(--bg-card);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    animation: faideOut 0.2s ease-in forwards;
+}
+
+.info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: var(--bold);
+    color: var(--clr-primary);
+}
+
+.description {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: var(--regular);
+    color: var(--clr-description);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove {
+    padding: 8px 1rem;
+    border: 1px solid var(--border-remove);
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: var(--medium);
+    cursor: pointer;
+    color: var(--clr-primary);
+    background-color: transparent;
+}
+
+.remove:hover {
+    border-color: transparent;
+    color: var(--clr-secondary);
+    background-color: var(--bg-hover-remove);
+}
+
+.switch {
+    --switch-width: 45px;
+    --switch-height: 25px;
+    --switch-background: var(--bg-switch);
+
+    --initial-offset: 3px;
+
+    --toggle-size: calc(var(--switch-height) - 2 * var(--initial-offset));
+
+    border-radius: 100px;
+    background-color: var(--switch-background);
+}
+
+.switch:hover {
+    background-color: var(--bg-hover-switch);
+}
+
+.switch label {
+    position: relative;
+    display: block;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    border-radius: inherit;
+    cursor: pointer;
+}
+
+.switch .toggle {
+    position: absolute;
+    left: var(--active-offset, var(--initial-offset));
+    top: var(--initial-offset);
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    border-radius: 100px;
+    background-color: var(--neutral-0);
+    transition: left .2s ease-in;
+}
+
+.switch input {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.switch:has(input:checked) {
+    --switch-background: var(--bg-switch-active);
+
+    --active-offset: calc(
+        var(--switch-width) - var(--initial-offset) - var(--toggle-size)
+    );
+}
+
+/* Animations */
+@keyframes faideOut {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1.0); }
+}
+
+/* Media Queries */
+@media (max-width: 840px) {
+    header, .extensions-list {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .list-header {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 1rem 0;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .extensions-grid {
+        grid-template-columns: 90vw;
+    }
+}

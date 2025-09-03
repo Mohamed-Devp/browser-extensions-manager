@@ -127,7 +127,7 @@ function removeExtension(this: HTMLButtonElement, _: Event) {
 }
 
 async function main() {
-    extensions = await loadJson('/extensions.json');
+    extensions = await loadJson('./extensions.json');
 
     updateExtensions();
 

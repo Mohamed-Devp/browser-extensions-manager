@@ -108,7 +108,7 @@ function removeExtension(_) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        extensions = yield loadJson('/extensions.json');
+        extensions = yield loadJson('./extensions.json');
         updateExtensions();
         filters.forEach((filter, key) => {
             filter.addEventListener('click', () => updateFilter(key));
